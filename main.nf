@@ -11,11 +11,15 @@
     """
   }
 
+  if (params.genome) {
   process runMakeBlastDB {
     conda '/wrappers/blast/env.yaml'
-
     script:
     """
-    makeblastdb -in $params.query -dbtype 'nucl' -out $dbDir/$dbName
+    makeblastdb -in ${params.genome} -dbtype 'nucl' -out $dbDir/$dbName
     """
   }
+
+  println "It worked"
+  exit 0
+}
